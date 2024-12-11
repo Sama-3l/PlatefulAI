@@ -4,7 +4,10 @@ import 'package:platefulai/constants/colors.dart';
 import 'package:platefulai/constants/extensions.dart';
 import 'package:platefulai/constants/sizes.dart';
 import 'package:platefulai/data/models/user.dart';
+import 'package:platefulai/presentation/screens/signup.dart';
+import 'package:platefulai/presentation/widget/action_button.dart';
 import 'package:platefulai/presentation/widget/home_page_widgets/recipe_explore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountScreen extends StatelessWidget {
   AccountScreen({super.key, required this.currUser});
@@ -21,12 +24,25 @@ class AccountScreen extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.only(left: 16, right: 16),
               child: Column(children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Account",
-                    style: context.title,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      "Account",
+                      style: context.title,
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () async {
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        prefs.remove('token');
+                        Navigator.of(context).pushAndRemoveUntil(CupertinoPageRoute(builder: (context) => SignUpPage()), (Route route) => false);
+                      },
+                      child: Text(
+                        "Sign Out",
+                        style: context.button.copyWith(color: AppColors.primaryGreen),
+                      ),
+                    ),
+                  ],
                 ),
                 kGap8,
                 Expanded(
