@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -75,12 +76,20 @@ class Methods {
       final GoogleSignIn googleSignIn = GoogleSignIn();
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
-      if (googleUser != null) {
-        // Obtain Google Sign-In ID token
-        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      final userCred = await FirebaseAuth.instance.signInWithCredential(credential);
+
+      if (googleUser != null) {
         // Send the ID token to your backend for verification
-        final String? idToken = googleAuth.idToken;
+        final String? idToken = googleAuth!.idToken;
         final response = await http.post(
           Uri.parse('http://localhost:8000/auth/google/callback'), // Replace with your backend URL
           headers: {
