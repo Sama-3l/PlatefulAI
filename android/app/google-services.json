@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "500997261889",
+    "project_id": "area-51-29b50",
+    "storage_bucket": "area-51-29b50.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500997261889:android:880734378dfe359c4f54c0",
+        "android_client_info": {
+          "package_name": "com.samael.platefulai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500997261889-76shaodpvbi2b5gmpl7u43vs8ou0jf71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5tkgwlBteww7I8l_73Gua74CT-8eDm24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500997261889-76shaodpvbi2b5gmpl7u43vs8ou0jf71.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "500997261889-jvccp3uastccccbbuas6im6fjdutrto6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.area51"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
