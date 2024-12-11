@@ -165,7 +165,7 @@ class Methods {
         recipe.toJson(),
         token!,
       );
-      recipe.id = jsonDecode(response2.body)["_id"].toString();
+      recipe.id = jsonDecode(response2.body)[0]["_id"].toString();
     } catch (error) {
       alert(context, "Error", "Couldn't add Recipe");
       debugPrint("Error signing in: $error");

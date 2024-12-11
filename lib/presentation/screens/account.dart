@@ -35,7 +35,7 @@ class AccountScreen extends StatelessWidget {
                       onTap: () async {
                         SharedPreferences prefs = await SharedPreferences.getInstance();
                         prefs.remove('token');
-                        Navigator.of(context).pushAndRemoveUntil(CupertinoPageRoute(builder: (context) => SignUpPage()), (Route route) => false);
+                        Navigator.of(context).pop();
                       },
                       child: Text(
                         "Sign Out",
