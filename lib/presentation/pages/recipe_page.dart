@@ -237,7 +237,7 @@ class _RecipePageState extends State<RecipePage> {
                               title: "Tools",
                               tools: widget.recipe.tools,
                               onTap: () {
-                                Navigator.of(context).pushReplacement(CupertinoPageRoute(
+                                Navigator.of(context).push(CupertinoPageRoute(
                                     builder: (context) => RecipeItemAddDataPage(
                                           user: widget.user,
                                           recipe: widget.recipe,
