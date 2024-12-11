@@ -14,7 +14,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "500997261889-76shaodpvbi2b5gmpl7u43vs8ou0jf71.apps.googleusercontent.com",
+          "client_id": "500997261889-g93vndgmucvg3jcspmqg9jpjdlcamo85.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samael.platefulai",
+            "certificate_hash": "30ca8a03bbcf6ddd186214fff7165074d816af73"
+          }
+        },
+        {
+          "client_id": "500997261889-hvfuropmkirtfgiuekmehi81lfoo9ovo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samael.platefulai",
+            "certificate_hash": "ec872f194b46e75db791e28bbd4b8411d4018065"
+          }
+        },
+        {
+          "client_id": "500997261889-2bjohfbcl2km167263nbasqcu3g1hbq9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,14 +43,14 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "500997261889-76shaodpvbi2b5gmpl7u43vs8ou0jf71.apps.googleusercontent.com",
+              "client_id": "500997261889-2bjohfbcl2km167263nbasqcu3g1hbq9.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "500997261889-jvccp3uastccccbbuas6im6fjdutrto6.apps.googleusercontent.com",
+              "client_id": "500997261889-l2pk7ddvmlnn93kigtm72agec7o40u3a.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.area51"
+                "bundle_id": "com.samael.platefulai"
               }
             }
           ]
