@@ -86,7 +86,7 @@ class Methods {
       );
 
       // Once signed in, return the UserCredential
-      final userCred = await FirebaseAuth.instance.signInWithCredential(credential);
+      await FirebaseAuth.instance.signInWithCredential(credential);
 
       if (googleUser != null) {
         // Send the ID token to your backend for verification
@@ -114,7 +114,7 @@ class Methods {
         }
       }
     } catch (error) {
-      alert(context, 'Error', 'Sign up didn\'t work');
+      alert(context, 'Error', "$error");
       debugPrint("Error signing in: $error");
     }
   }
