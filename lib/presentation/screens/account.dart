@@ -4,8 +4,6 @@ import 'package:platefulai/constants/colors.dart';
 import 'package:platefulai/constants/extensions.dart';
 import 'package:platefulai/constants/sizes.dart';
 import 'package:platefulai/data/models/user.dart';
-import 'package:platefulai/presentation/screens/signup.dart';
-import 'package:platefulai/presentation/widget/action_button.dart';
 import 'package:platefulai/presentation/widget/home_page_widgets/recipe_explore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
