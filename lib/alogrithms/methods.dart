@@ -17,6 +17,7 @@ import 'package:platefulai/data/models/user.dart';
 import 'package:platefulai/data/repo/backend_repo.dart';
 import 'package:platefulai/presentation/main_app.dart';
 import 'package:platefulai/presentation/widget/recipe_page_widgets/enum_picker_modal.dart';
+import 'package:platefulai/utils/backend_connection.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Methods {
@@ -91,7 +92,7 @@ class Methods {
         // Send the ID token to your backend for verification
         final String? idToken = googleAuth!.idToken;
         final response = await http.post(
-          Uri.parse('http://localhost:8000/auth/google/callback'), // Replace with your backend URL
+          Uri.parse('${BackendConnection.baseUrl}auth/google/callback'), // Replace with your backend URL
           headers: {
             'Content-Type': 'application/json',
           },
