@@ -50,29 +50,28 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => ChatPageUpdateCubit()),
       ],
       child: CupertinoApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: theme,
-        home: FutureBuilder(
-            future: func.verifySignIn(context),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.data == null) {
-                  return SignUpPage();
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: theme,
+          home: FutureBuilder(
+              future: func.verifySignIn(context),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.data == null) {
+                    return SignUpPage();
+                  } else {
+                    return MainApp(currUser: snapshot.data!);
+                  }
                 } else {
-                  return MainApp(currUser: snapshot.data!);
+                  return const CupertinoPageScaffold(
+                      backgroundColor: AppColors.primaryGreen,
+                      child: Center(
+                        child: CupertinoActivityIndicator(
+                          color: AppColors.backgroundWhite,
+                        ),
+                      ));
                 }
-              } else {
-                return const CupertinoPageScaffold(
-                    backgroundColor: AppColors.primaryGreen,
-                    child: Center(
-                      child: CupertinoActivityIndicator(
-                        color: AppColors.backgroundWhite,
-                      ),
-                    ));
-              }
-            }),
-      ),
+              })),
     );
   }
 }

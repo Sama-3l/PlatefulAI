@@ -123,7 +123,10 @@ class Methods {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final String? token = prefs.getString('token');
-      final response2 = await backendRepo.callUserGetMethod('user/getUser', token!);
+      if (token == null) {
+        return null;
+      }
+      final response2 = await backendRepo.callUserGetMethod('user/getUser', token);
       UserModel currUser = UserModel.fromJson(jsonDecode(response2.body));
       return currUser;
     } catch (error) {
@@ -137,7 +140,10 @@ class Methods {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final String? token = prefs.getString('token');
-      final response2 = await backendRepo.callUserGetMethod('category/', token!);
+      if (token == null) {
+        return [];
+      }
+      final response2 = await backendRepo.callUserGetMethod('category/', token);
       List<CategoryModel> categories = (jsonDecode(response2.body) as List).map((e) {
         return CategoryModel.fromJson(e);
       }).toList();
@@ -154,7 +160,10 @@ class Methods {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final String? token = prefs.getString('token');
-      final response2 = await backendRepo.callUserGetMethod('recipe/', token!);
+      if (token == null) {
+        return [];
+      }
+      final response2 = await backendRepo.callUserGetMethod('recipe/', token);
       List<Recipe> recipes = (jsonDecode(response2.body) as List).map((e) {
         // debugPrint(e);
         return Recipe.fromJson(e);

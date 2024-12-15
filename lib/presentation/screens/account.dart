@@ -4,6 +4,7 @@ import 'package:platefulai/constants/colors.dart';
 import 'package:platefulai/constants/extensions.dart';
 import 'package:platefulai/constants/sizes.dart';
 import 'package:platefulai/data/models/user.dart';
+import 'package:platefulai/main.dart';
 import 'package:platefulai/presentation/widget/home_page_widgets/recipe_explore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,7 +34,7 @@ class AccountScreen extends StatelessWidget {
                       onTap: () async {
                         SharedPreferences prefs = await SharedPreferences.getInstance();
                         prefs.remove('token');
-                        Navigator.of(context).pop();
+                        Navigator.of(context, rootNavigator: true).pushReplacement(CupertinoPageRoute(builder: (context) => MyApp()));
                       },
                       child: Text(
                         "Sign Out",
