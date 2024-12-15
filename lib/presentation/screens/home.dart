@@ -119,11 +119,9 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         kGap16,
-                        Expanded(
-                            child: Container(
-                          child: Center(
-                            child: CupertinoActivityIndicator(),
-                          ),
+                        const Expanded(
+                            child: Center(
+                          child: CupertinoActivityIndicator(),
                         ))
                       ]);
                     }

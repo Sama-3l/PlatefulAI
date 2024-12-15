@@ -11,6 +11,7 @@ import 'package:platefulai/business_logic/cubits/LikeAndSave/like_and_save_cubit
 import 'package:platefulai/business_logic/cubits/MarkStepDone/mark_step_done_cubit.dart';
 import 'package:platefulai/business_logic/cubits/RecipePageItemSwitch/recipe_page_item_switch_cubit.dart';
 import 'package:platefulai/business_logic/cubits/RefreshHomePage/refresh_home_page_cubit.dart';
+import 'package:platefulai/business_logic/cubits/SignUp/sign_up_cubit.dart';
 import 'package:platefulai/business_logic/cubits/UpdateTextField/update_textfield_cubit.dart';
 import 'package:platefulai/constants/colors.dart';
 import 'package:platefulai/constants/theme.dart';
@@ -48,6 +49,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => UpdateTextfieldCubit()),
         BlocProvider(create: (context) => LikeAndSaveCubit()),
         BlocProvider(create: (context) => ChatPageUpdateCubit()),
+        BlocProvider(create: (context) => SignUpCubit()),
       ],
       child: CupertinoApp(
           debugShowCheckedModeBanner: false,

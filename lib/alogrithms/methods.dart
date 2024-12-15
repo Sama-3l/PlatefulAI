@@ -4,10 +4,12 @@ import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:platefulai/assets/svgs/svgs.dart';
+import 'package:platefulai/business_logic/cubits/SignUp/sign_up_cubit.dart';
 
 import 'package:platefulai/constants/enum.dart';
 import 'package:platefulai/data/models/category.dart';
@@ -79,14 +81,14 @@ class Methods {
 
       final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-      // Create a new credential
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
+      // // Create a new credential
+      // final credential = GoogleAuthProvider.credential(
+      //   accessToken: googleAuth?.accessToken,
+      //   idToken: googleAuth?.idToken,
+      // );
 
-      // Once signed in, return the UserCredential
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      // // Once signed in, return the UserCredential
+      // await FirebaseAuth.instance.signInWithCredential(credential);
 
       if (googleUser != null) {
         // Send the ID token to your backend for verification
@@ -101,6 +103,7 @@ class Methods {
 
         if (response.statusCode == 200) {
           // Handle success
+          BlocProvider.of<SignUpCubit>(context).onSignUp();
           final String token = jsonDecode(response.body)["token"]; // JWT token from backend
           final response2 = await backendRepo.callUserGetMethod('user/getUser', token);
           updateToken(token);

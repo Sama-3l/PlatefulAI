@@ -33,7 +33,7 @@ class RecipeExplore extends StatelessWidget {
             style: context.heading,
           ),
         if (recipes.isNotEmpty)
-          ...recipes.map((e) => RecipeOptionElement(
+          ...recipes.reversed.map((e) => RecipeOptionElement(
                 recipe: e,
                 currUser: currUser,
               ))
