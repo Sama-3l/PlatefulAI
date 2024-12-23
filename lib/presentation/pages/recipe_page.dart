@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:platefulai/alogrithms/methods.dart';
 import 'package:platefulai/alogrithms/widget_decider.dart';
 import 'package:platefulai/business_logic/cubits/AddRecipeItem/add_recipe_item_cubit.dart';
@@ -22,11 +23,13 @@ import 'package:platefulai/presentation/widget/tag_element.dart';
 class RecipePage extends StatefulWidget {
   RecipePage({
     super.key,
+    required this.allRecipes,
     required this.recipe,
     required this.user,
     this.editable = false,
   });
 
+  final int allRecipes;
   final Recipe recipe;
   final UserModel user;
   final bool editable;
@@ -83,7 +86,11 @@ class _RecipePageState extends State<RecipePage> {
                                 widget.recipe.name = title.value.text;
                                 widget.recipe.description = description.value.text;
                                 widget.recipe.category = selectedCategory;
-                                func.publishRecipe(context, widget.recipe);
+                                if (widget.allRecipes < int.parse(dotenv.env["LIMIT_BACKEND"]!)) {
+                                  func.alert(context, "Error", "Sorry backend limits exceeded.");
+                                } else {
+                                  func.publishRecipe(context, widget.recipe);
+                                }
                                 widget.user.myRecipes!.add(widget.recipe);
                                 Navigator.of(context).pop();
                               } else {

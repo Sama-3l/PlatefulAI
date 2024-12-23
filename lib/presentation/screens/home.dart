@@ -23,6 +23,7 @@ class HomeScreen extends StatelessWidget {
 
   final TextEditingController search = TextEditingController();
   final Methods func = Methods();
+  int recipesLength = 0;
   Category currCategory = Category.All;
 
   @override
@@ -34,7 +35,9 @@ class HomeScreen extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.only(left: 16, right: 16),
               child: FutureBuilder(
-                  future: func.initializeData(currCategory, search, context),
+                  future: func.initializeData(currCategory, search, context, (length) {
+                    recipesLength = length;
+                  }),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       return BlocBuilder<RefreshHomePageCubit, RefreshHomePageState>(
@@ -135,6 +138,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               onPressed: () => Navigator.of(context, rootNavigator: true).push(CupertinoPageRoute(
                   builder: (context) => RecipePage(
+                        allRecipes: recipesLength,
                         user: currUser,
                         recipe: Recipe(
                           id: "",

@@ -10,12 +10,14 @@ class AddPageTextfield extends StatelessWidget {
     required this.maxLines,
     required this.placeholder,
     required this.style,
+    this.maxLength,
     this.inputType,
     this.padding = const EdgeInsets.all(8),
   });
 
   final TextEditingController controller;
   int maxLines;
+  int? maxLength;
   String placeholder;
   TextStyle style;
   EdgeInsets padding;
@@ -27,6 +29,7 @@ class AddPageTextfield extends StatelessWidget {
       controller: controller,
       minLines: 1,
       maxLines: maxLines,
+      maxLength: maxLength,
       keyboardType: inputType,
       padding: padding,
       decoration: BoxDecoration(

@@ -1,8 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -139,7 +137,12 @@ class Methods {
     return null;
   }
 
-  Future<List<CategoryModel>> initializeData(Category currCategory, TextEditingController search, BuildContext context) async {
+  Future<List<CategoryModel>> initializeData(
+    Category currCategory,
+    TextEditingController search,
+    BuildContext context,
+    Function(int length) callback,
+  ) async {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final String? token = prefs.getString('token');
@@ -151,6 +154,7 @@ class Methods {
         return CategoryModel.fromJson(e);
       }).toList();
       categories.insert(0, CategoryModel(name: Category.All, icon: circleDotted, recipes: await getRecipes(context)));
+      callback(categories.first.recipes.length);
       return categories;
     } catch (error) {
       alert(context, 'Error', 'Sign up didn\'t work');

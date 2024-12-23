@@ -59,9 +59,20 @@ class _GptPageState extends State<GptPage> {
                       Column(children: [
                         Row(
                           children: [
-                            Text(
-                              widget.title,
-                              style: context.title.copyWith(color: AppColors.backgroundWhite),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  widget.title,
+                                  style: context.title.copyWith(color: AppColors.backgroundWhite),
+                                ),
+                                kGap4,
+                                Text(
+                                  "Chat size limit is 30 and limit on number of chats is 5",
+                                  style: context.caption.copyWith(color: AppColors.backgroundWhite),
+                                ),
+                              ],
                             ),
                             kGap16,
                             if (state is WaitingForAI)
@@ -118,6 +129,7 @@ class _GptPageState extends State<GptPage> {
                               Expanded(
                                 child: AddPageTextfield(
                                   controller: controller,
+                                  maxLength: 30,
                                   maxLines: 5,
                                   placeholder: "How can I help you better with ${widget.title}",
                                   style: context.body,
@@ -135,7 +147,11 @@ class _GptPageState extends State<GptPage> {
                                     controller.clear();
                                     BlocProvider.of<ChatPageUpdateCubit>(context).onWaitingForAI();
                                     ChatModel aiChat = ChatModel(user: "", chat: "", ai: true);
-                                    await func.sendMsg(context, widget.title, chat.chat, scrollController, aiChat);
+                                    if (chats.length > 5) {
+                                      func.alert(context, "Error", "Text Limit exceeded");
+                                    } else {
+                                      await func.sendMsg(context, widget.title, chat.chat, scrollController, aiChat);
+                                    }
                                     chats.insert(0, aiChat);
                                     BlocProvider.of<ChatPageUpdateCubit>(context).onUpdate();
                                   }),

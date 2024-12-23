@@ -14,10 +14,12 @@ import 'package:platefulai/presentation/widget/tag_element.dart';
 class RecipeOptionElement extends StatelessWidget {
   RecipeOptionElement({
     super.key,
+    required this.recipeLength,
     required this.recipe,
     required this.currUser,
   });
 
+  final int recipeLength;
   final Recipe recipe;
   final UserModel currUser;
   final Methods func = Methods();
@@ -29,6 +31,7 @@ class RecipeOptionElement extends StatelessWidget {
       child: GestureDetector(
         onTap: () => Navigator.of(context, rootNavigator: true).push(CupertinoPageRoute(
             builder: (context) => RecipePage(
+                  allRecipes: recipeLength,
                   recipe: recipe,
                   user: currUser,
                 ))),

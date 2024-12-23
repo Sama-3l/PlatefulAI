@@ -75,7 +75,7 @@ extension UIThemeExtension on BuildContext {
 
   TextStyle get caption => light.copyWith(
         fontSize: 10,
-        letterSpacing: -0.7,
+        letterSpacing: -0.4,
         height: 1,
         color: AppColors.primaryGreen,
       );
@@ -101,7 +101,7 @@ extension UIThemeExtension on BuildContext {
 
   TextStyle get caption2 => light.copyWith(
         fontSize: 8,
-        letterSpacing: -0.5,
+        letterSpacing: -0.2,
         color: AppColors.primaryGreen,
       );
 }
